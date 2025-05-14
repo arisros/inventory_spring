@@ -13,80 +13,71 @@
 
       <form
         th:action="@{/buah/ubah/{id}(id=${buah.id})}"
+        th:object="${buah}"
         method="post"
         class="space-y-4"
       >
         <div>
-          <label for="nama" class="block font-medium mb-1">Nama Buah:</label>
+          <label class="block font-medium mb-1" for="nama">Nama Buah:</label>
           <input
             type="text"
-            id="nama"
-            name="nama"
-            th:value="${buah.nama}"
+            th:field="*{nama}"
             class="w-full px-3 py-2 border rounded-md"
-            required
           />
+          <div
+            th:if="${#fields.hasErrors('nama')}"
+            th:errors="*{nama}"
+            class="text-red-500 text-sm mt-1"
+          ></div>
         </div>
 
         <div>
-          <label for="harga_per_kg" class="block font-medium mb-1"
+          <label class="block font-medium mb-1" for="hargaPerKg"
             >Harga Per Kg:</label
           >
           <input
             type="number"
-            id="harga_per_kg"
-            name="harga_per_kg"
-            th:value="${buah.hargaPerKg}"
+            th:field="*{hargaPerKg}"
             class="w-full px-3 py-2 border rounded-md"
-            required
           />
+          <div
+            th:if="${#fields.hasErrors('hargaPerKg')}"
+            th:errors="*{hargaPerKg}"
+            class="text-red-500 text-sm mt-1"
+          ></div>
         </div>
 
         <div>
-          <label for="stok" class="block font-medium mb-1">Jumlah Stok:</label>
+          <label class="block font-medium mb-1" for="stok">Jumlah Stok:</label>
           <input
             type="number"
-            id="stok"
-            name="stok"
-            th:value="${buah.stok}"
+            th:field="*{stok}"
             class="w-full px-3 py-2 border rounded-md"
-            required
           />
+          <div
+            th:if="${#fields.hasErrors('stok')}"
+            th:errors="*{stok}"
+            class="text-red-500 text-sm mt-1"
+          ></div>
         </div>
 
         <div>
-          <label for="kategori" class="block font-medium mb-1">Kategori:</label>
+          <label class="block font-medium mb-1" for="kategori">Kategori:</label>
           <select
-            name="kategori"
-            id="kategori"
+            th:field="*{kategori}"
             class="w-full px-3 py-2 border rounded-md"
-            required
           >
-            <option
-              value="BUAH_SEGAR"
-              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).BUAH_SEGAR}"
-            >
-              Buah segar
-            </option>
-            <option
-              value="BUAH_OLAHAN"
-              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).BUAH_OLAHAN}"
-            >
-              Buah olahan
-            </option>
-            <option
-              value="BUAH_TROPIS"
-              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).BUAH_TROPIS}"
-            >
-              Buah tropis
-            </option>
-            <option
-              value="LAINNYA"
-              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).LAINNYA}"
-            >
-              Lainnya
-            </option>
+            <option value="">-- Pilih Kategori --</option>
+            <option th:value="BUAH_SEGAR">Buah Segar</option>
+            <option th:value="BUAH_OLAHAN">Buah Olahan</option>
+            <option th:value="BUAH_TROPIS">Buah Tropis</option>
+            <option th:value="LAINNYA">Lainnya</option>
           </select>
+          <div
+            th:if="${#fields.hasErrors('kategori')}"
+            th:errors="*{kategori}"
+            class="text-red-500 text-sm mt-1"
+          ></div>
         </div>
 
         <div>
@@ -96,50 +87,59 @@
           <textarea
             id="deskripsi"
             name="deskripsi"
-            th:text="${buah.deskripsi}"
+            th:field="*{deskripsi}"
             class="w-full px-3 py-2 border rounded-md"
+            rows="4"
+            placeholder="Masukkan deskripsi buah..."
           ></textarea>
         </div>
 
         <div>
-          <label for="tanggal_masuk" class="block font-medium mb-1"
+          <label class="block font-medium mb-1" for="tanggalMasuk"
             >Tanggal Masuk:</label
           >
           <input
             type="date"
-            id="tanggal_masuk"
-            name="tanggal_masuk"
-            th:value="${#dates.format(buah.tanggalMasuk, 'yyyy-MM-dd')}"
+            th:field="*{tanggalMasuk}"
             class="w-full px-3 py-2 border rounded-md"
-            required
           />
+          <div
+            th:if="${#fields.hasErrors('tanggalMasuk')}"
+            th:errors="*{tanggalMasuk}"
+            class="text-red-500 text-sm mt-1"
+          ></div>
         </div>
 
         <div>
-          <label for="tanggal_kadaluarsa" class="block font-medium mb-1"
+          <label class="block font-medium mb-1" for="tanggalKadaluarsa"
             >Tanggal Kadaluarsa:</label
           >
           <input
             type="date"
-            id="tanggal_kadaluarsa"
-            name="tanggal_kadaluarsa"
-            th:value="${#dates.format(buah.tanggalKadaluarsa, 'yyyy-MM-dd')}"
+            th:field="*{tanggalKadaluarsa}"
             class="w-full px-3 py-2 border rounded-md"
           />
+          <div
+            th:if="${#fields.hasErrors('tanggalKadaluarsa')}"
+            th:errors="*{tanggalKadaluarsa}"
+            class="text-red-500 text-sm mt-1"
+          ></div>
         </div>
 
         <div>
-          <label for="supplier" class="block font-medium mb-1"
+          <label class="block font-medium mb-1" for="supplier"
             >Nama Supplier:</label
           >
           <input
             type="text"
-            id="supplier"
-            name="supplier"
-            th:value="${buah.supplier}"
+            th:field="*{supplier}"
             class="w-full px-3 py-2 border rounded-md"
-            required
           />
+          <div
+            th:if="${#fields.hasErrors('supplier')}"
+            th:errors="*{supplier}"
+            class="text-red-500 text-sm mt-1"
+          ></div>
         </div>
 
         <div class="flex justify-end mt-6 space-x-4">

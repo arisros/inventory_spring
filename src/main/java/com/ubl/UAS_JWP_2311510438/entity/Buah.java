@@ -2,7 +2,9 @@
 package com.ubl.uas_jwp_2311510438.entity;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import jakarta.validation.constraints.*;
+import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Buah {
@@ -11,21 +13,35 @@ public class Buah {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Nama Buah harus diisi")
+    @NotEmpty(message = "Nama Buah tidak boleh kosong")
     private String nama;
 
+    @NotNull(message = "Harga per Kg harus diisi")
+    @DecimalMin(value = "0.01", message = "Harga per Kg harus lebih besar dari 0")
     private Double hargaPerKg;
 
+    @NotNull(message = "Jumlah Stok harus diisi")
+    @Min(value = 1, message = "Jumlah Stok harus lebih besar dari 0")
     private Integer stok;
 
+    @NotNull(message = "Kategori harus dipilih")
     @Enumerated(EnumType.STRING)
     private KategoriBuah kategori;  // Using enum
 
     private String deskripsi;
 
-    private Date tanggalMasuk;
+    @NotNull(message = "Tanggal Masuk harus diisi")
+    @PastOrPresent(message = "Tanggal Masuk harus <= hari ini")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate tanggalMasuk;
 
-    private Date tanggalKadaluarsa;
+    @FutureOrPresent(message = "Tanggal Kadaluarsa harus >= tanggal masuk")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate tanggalKadaluarsa;
 
+    @NotNull(message = "Nama Supplier harus diisi")
+    @NotEmpty(message = "Nama Supplier tidak boleh kosong")
     private String supplier;
 
     // Getter & Setter
@@ -47,11 +63,11 @@ public class Buah {
     public String getDeskripsi() { return deskripsi; }
     public void setDeskripsi(String deskripsi) { this.deskripsi = deskripsi; }
 
-    public Date getTanggalMasuk() { return tanggalMasuk; }
-    public void setTanggalMasuk(Date tanggalMasuk) { this.tanggalMasuk = tanggalMasuk; }
+    public LocalDate getTanggalMasuk() { return tanggalMasuk; }
+    public void setTanggalMasuk(LocalDate tanggalMasuk) { this.tanggalMasuk = tanggalMasuk; }
 
-    public Date getTanggalKadaluarsa() { return tanggalKadaluarsa; }
-    public void setTanggalKadaluarsa(Date tanggalKadaluarsa) { this.tanggalKadaluarsa = tanggalKadaluarsa; }
+    public LocalDate getTanggalKadaluarsa() { return tanggalKadaluarsa; }
+    public void setTanggalKadaluarsa(LocalDate tanggalKadaluarsa) { this.tanggalKadaluarsa = tanggalKadaluarsa; }
 
     public String getSupplier() { return supplier; }
     public void setSupplier(String supplier) { this.supplier = supplier; }
