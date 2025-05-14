@@ -4,15 +4,15 @@ https://github.com/arisros/inventory_spring
 
 ## Technical Stack
 
-Java: OpenJDK 17 (Temurin-17.0.9+9)
-Spring Boot: 3.4.5
-Spring Data JPA: Included in Spring Boot Starter
-Spring Validation (Jakarta Validation): 3.0.0
-Hibernate Validator: 7.0.0.Final
-H2 Database: Latest version (from Maven repository)
-Thymeleaf: Managed by Spring Boot (depends on Spring Boot version)
-Tailwind CSS: Latest version via CDN
-Gradle: 8.14
+- Java: OpenJDK 17 (Temurin-17.0.9+9)
+- Spring Boot: 3.4.5
+- Spring Data JPA: Included in Spring Boot Starter
+- Spring Validation (Jakarta Validation): 3.0.0
+- Hibernate Validator: 7.0.0.Final
+- H2 Database: Latest version (from Maven repository)
+- Thymeleaf: Managed by Spring Boot (depends on Spring Boot version)
+- Tailwind CSS: Latest version via CDN
+- Gradle: 8.14
 
 ## A. Tampilan Aplikasi dan Fungsi yang Ada
 
