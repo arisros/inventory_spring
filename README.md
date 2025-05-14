@@ -73,7 +73,7 @@ Aplikasi Inventaris Buah memiliki beberapa tampilan utama:
 
 - ❌ Tidak ada notifikasi berbasis pop-up atau toast saat aksi berhasil/gagal.
 - ❌ Belum terdapat notifikasi hapus
-- x Belum ada fitur export ke Excel.
+- ❌ Belum ada fitur export ke Excel.
 - ❌ Belum ada autentikasi user (siapa yang bisa tambah, ubah, hapus).
 
 ### Saran:
