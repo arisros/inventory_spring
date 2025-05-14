@@ -1,99 +1,162 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
   <head>
+    <meta charset="UTF-8" />
     <title>Ubah Inventaris Buah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>Ubah Inventaris Buah</h1>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-lg bg-white p-8 rounded shadow">
+      <h1 class="text-2xl font-bold mb-6 text-blue-600 text-center">
+        Ubah Inventaris Buah
+      </h1>
 
-    <form th:action="@{/buah/ubah/{id}(id=${buah.id})}" method="post">
-      <label for="nama">Nama Buah:</label>
-      <input
-        type="text"
-        id="nama"
-        name="nama"
-        th:value="${buah.nama}"
-        required
-      />
+      <form
+        th:action="@{/buah/ubah/{id}(id=${buah.id})}"
+        method="post"
+        class="space-y-4"
+      >
+        <div>
+          <label for="nama" class="block font-medium mb-1">Nama Buah:</label>
+          <input
+            type="text"
+            id="nama"
+            name="nama"
+            th:value="${buah.nama}"
+            class="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
 
-      <label for="harga_per_kg">Harga Per Kg:</label>
-      <input
-        type="number"
-        id="harga_per_kg"
-        name="harga_per_kg"
-        th:value="${buah.hargaPerKg}"
-        required
-      />
+        <div>
+          <label for="harga_per_kg" class="block font-medium mb-1"
+            >Harga Per Kg:</label
+          >
+          <input
+            type="number"
+            id="harga_per_kg"
+            name="harga_per_kg"
+            th:value="${buah.hargaPerKg}"
+            class="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
 
-      <label for="stok">Jumlah Stok:</label>
-      <input
-        type="number"
-        id="stok"
-        name="stok"
-        th:value="${buah.stok}"
-        required
-      />
+        <div>
+          <label for="stok" class="block font-medium mb-1">Jumlah Stok:</label>
+          <input
+            type="number"
+            id="stok"
+            name="stok"
+            th:value="${buah.stok}"
+            class="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
 
-      <label for="kategori">Kategori:</label>
-      <select name="kategori" id="kategori" required>
-        <option
-          value="Buah segar"
-          th:selected="${buah.kategori == 'Buah segar'}"
-        >
-          Buah segar
-        </option>
-        <option
-          value="Buah olahan"
-          th:selected="${buah.kategori == 'Buah olahan'}"
-        >
-          Buah olahan
-        </option>
-        <option
-          value="Buah tropis"
-          th:selected="${buah.kategori == 'Buah tropis'}"
-        >
-          Buah tropis
-        </option>
-        <option value="Lainnya" th:selected="${buah.kategori == 'Lainnya'}">
-          Lainnya
-        </option>
-      </select>
+        <div>
+          <label for="kategori" class="block font-medium mb-1">Kategori:</label>
+          <select
+            name="kategori"
+            id="kategori"
+            class="w-full px-3 py-2 border rounded-md"
+            required
+          >
+            <option
+              value="BUAH_SEGAR"
+              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).BUAH_SEGAR}"
+            >
+              Buah segar
+            </option>
+            <option
+              value="BUAH_OLAHAN"
+              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).BUAH_OLAHAN}"
+            >
+              Buah olahan
+            </option>
+            <option
+              value="BUAH_TROPIS"
+              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).BUAH_TROPIS}"
+            >
+              Buah tropis
+            </option>
+            <option
+              value="LAINNYA"
+              th:selected="${buah.kategori == T(com.ubl.uas_jwp_2311510438.entity.KategoriBuah).LAINNYA}"
+            >
+              Lainnya
+            </option>
+          </select>
+        </div>
 
-      <label for="deskripsi">Deskripsi:</label>
-      <textarea
-        id="deskripsi"
-        name="deskripsi"
-        th:text="${buah.deskripsi}"
-      ></textarea>
+        <div>
+          <label for="deskripsi" class="block font-medium mb-1"
+            >Deskripsi:</label
+          >
+          <textarea
+            id="deskripsi"
+            name="deskripsi"
+            th:text="${buah.deskripsi}"
+            class="w-full px-3 py-2 border rounded-md"
+          ></textarea>
+        </div>
 
-      <label for="tanggal_masuk">Tanggal Masuk:</label>
-      <input
-        type="date"
-        id="tanggal_masuk"
-        name="tanggal_masuk"
-        th:value="${#dates.format(buah.tanggalMasuk, 'yyyy-MM-dd')}"
-        required
-      />
+        <div>
+          <label for="tanggal_masuk" class="block font-medium mb-1"
+            >Tanggal Masuk:</label
+          >
+          <input
+            type="date"
+            id="tanggal_masuk"
+            name="tanggal_masuk"
+            th:value="${#dates.format(buah.tanggalMasuk, 'yyyy-MM-dd')}"
+            class="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
 
-      <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa:</label>
-      <input
-        type="date"
-        id="tanggal_kadaluarsa"
-        name="tanggal_kadaluarsa"
-        th:value="${#dates.format(buah.tanggalKadaluarsa, 'yyyy-MM-dd')}"
-      />
+        <div>
+          <label for="tanggal_kadaluarsa" class="block font-medium mb-1"
+            >Tanggal Kadaluarsa:</label
+          >
+          <input
+            type="date"
+            id="tanggal_kadaluarsa"
+            name="tanggal_kadaluarsa"
+            th:value="${#dates.format(buah.tanggalKadaluarsa, 'yyyy-MM-dd')}"
+            class="w-full px-3 py-2 border rounded-md"
+          />
+        </div>
 
-      <label for="supplier">Nama Supplier:</label>
-      <input
-        type="text"
-        id="supplier"
-        name="supplier"
-        th:value="${buah.supplier}"
-        required
-      />
+        <div>
+          <label for="supplier" class="block font-medium mb-1"
+            >Nama Supplier:</label
+          >
+          <input
+            type="text"
+            id="supplier"
+            name="supplier"
+            th:value="${buah.supplier}"
+            class="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
 
-      <button type="submit">Simpan</button>
-      <a href="/buah/list">Batal</a>
-    </form>
+        <div class="flex justify-end mt-6 space-x-4">
+          <a
+            href="/buah/list"
+            class="px-4 py-2 border rounded-md text-gray-600 hover:bg-gray-100"
+          >
+            Batal
+          </a>
+          <button
+            type="submit"
+            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          >
+            Simpan
+          </button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

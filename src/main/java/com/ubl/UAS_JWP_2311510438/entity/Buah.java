@@ -2,7 +2,6 @@
 package com.ubl.uas_jwp_2311510438.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -12,28 +11,21 @@ public class Buah {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Nama buah harus diisi")
     private String nama;
 
-    @DecimalMin(value = "0.01", message = "Harga per kg harus lebih besar dari 0")
     private Double hargaPerKg;
 
-    @Min(value = 1, message = "Jumlah stok harus lebih besar dari 0")
     private Integer stok;
 
-    @NotEmpty(message = "Kategori harus dipilih")
-    private String kategori;
+    @Enumerated(EnumType.STRING)
+    private KategoriBuah kategori;  // Using enum
 
     private String deskripsi;
 
-    @NotNull(message = "Tanggal masuk harus diisi")
-    @PastOrPresent(message = "Tanggal masuk tidak bisa di masa depan")
     private Date tanggalMasuk;
 
-    @FutureOrPresent(message = "Tanggal kadaluarsa harus di masa depan atau hari ini")
     private Date tanggalKadaluarsa;
 
-    @NotEmpty(message = "Nama supplier harus diisi")
     private String supplier;
 
     // Getter & Setter
@@ -49,8 +41,8 @@ public class Buah {
     public Integer getStok() { return stok; }
     public void setStok(Integer stok) { this.stok = stok; }
 
-    public String getKategori() { return kategori; }
-    public void setKategori(String kategori) { this.kategori = kategori; }
+    public KategoriBuah getKategori() { return kategori; }
+    public void setKategori(KategoriBuah kategori) { this.kategori = kategori; }
 
     public String getDeskripsi() { return deskripsi; }
     public void setDeskripsi(String deskripsi) { this.deskripsi = deskripsi; }

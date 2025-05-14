@@ -34,12 +34,33 @@
 
         <div>
           <label class="block font-medium mb-1" for="kategori">Kategori</label>
-          <input
-            type="text"
+          <select
+            name="kategori"
             id="kategori"
-            th:field="*{kategori}"
             class="w-full px-3 py-2 border rounded-md"
-          />
+          >
+            <option
+              value="BUAH_SEGAR"
+              th:selected="${buah.kategori == 'BUAH_SEGAR'}"
+            >
+              Buah segar
+            </option>
+            <option
+              value="BUAH_OLAHAN"
+              th:selected="${buah.kategori == 'BUAH_OLAHAN'}"
+            >
+              Buah olahan
+            </option>
+            <option
+              value="BUAH_TROPIS"
+              th:selected="${buah.kategori == 'BUAH_TROPIS'}"
+            >
+              Buah tropis
+            </option>
+            <option value="LAINNYA" th:selected="${buah.kategori == 'LAINNYA'}">
+              Lainnya
+            </option>
+          </select>
           <p
             th:if="${#fields.hasErrors('kategori')}"
             th:errors="*{kategori}"
@@ -80,7 +101,7 @@
           ></p>
         </div>
 
-        <div class="flex justify-end mt-6">
+        <div class="flex justify-end mt-6 space-x-4">
           <a
             href="/buah/list"
             class="mr-4 px-4 py-2 border rounded-md text-gray-600 hover:bg-gray-100"
