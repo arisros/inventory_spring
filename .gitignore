@@ -6,6 +6,8 @@ build/
 !**/src/test/**/build/
 .DS_Store
 
+README.pdf
+
 ### STS ###
 .apt_generated
 .classpath
